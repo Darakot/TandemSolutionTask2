@@ -1,12 +1,29 @@
-package controller;
+package players;
 
 import dto.Player;
+import service.PalindromeGameService;
 
-public interface PalindromeGameController {
+import java.util.Map;
+
+/**
+ * Слой контроллера которые выполняет комманды пришедшие от пользователя
+ * Вся логика содержится в сервисном слое
+ */
+public class PalindromeGameControllerImpl implements PalindromeGameController {
+    PalindromeGameService palindromeGameService = new PalindromeGameService();
+
+    public PalindromeGameControllerImpl() {
+    }
+
     /**
      * Выводит 5 игроков с наибольшим количеством очков победы
      */
-    void leaderBoard();
+    @Override
+    public void leaderBoard() {
+        palindromeGameService.leaderBoard().entrySet().stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .forEach(System.out::println);
+    }
 
     /**
      * Создание нового пользователя и запись его в класс репозиторий
@@ -14,7 +31,10 @@ public interface PalindromeGameController {
      * @param name - имя игрока
      * @return - возвращает 1 если пользователь успешно создан и 0 если он уже существует или не получилось добавить в лист
      */
-    boolean newPlayer(String name, String nick);
+    @Override
+    public boolean newPlayer(String nick, String name) {
+        return palindromeGameService.newPlayer(nick, name);
+    }
 
     /**
      * Сам процесс игры если str является палиндром и его нет в списке палиндром игрока то добавляем его туда
@@ -22,23 +42,36 @@ public interface PalindromeGameController {
      * @param player - игрок
      * @param str - слово палиндр
      */
-    void playGame(Player player,String str);
+    @Override
+    public void playGame(Player player, String str) {
+        palindromeGameService.playGame(player, str);
+    }
 
     /**
      * Выводит на экран всех игроков которые зарегисрировались
      */
-    void allPlayers();
+    @Override
+    public void allPlayers() {
+        palindromeGameService.allPlayers();
+    }
 
     /**
      * Находит в репо класс игрока по нику
      * @param nick - ник игрока
      * @return - возвращает нужны класс Player
      */
-    Player getPlayer(String nick);
+    @Override
+    public Player getPlayer(String nick) {
+        return palindromeGameService.getPlayer(nick);
+    }
+
     /**
      * Показывает текущее количество очков победы у конкретного игрока
      * @param nick - ник игрока
      * @return - возвращает количество очков победы у конкретного игрока
      */
-    int getVpPlayer(String nick);
+    @Override
+    public int getVpPlayer(String nick) {
+        return palindromeGameService.getVpPlayer(nick);
+    }
 }

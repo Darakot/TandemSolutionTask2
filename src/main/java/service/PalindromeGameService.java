@@ -55,7 +55,7 @@ public class PalindromeGameService {
     public void playGame(Player player, String str) {
         if (!isPalindrome(str)) {
             System.out.println(String.format("%s не является палиндром",str));
-        }else if(!player.getPalindromes().contains(str)) {
+        }else if(player.getPalindromes().contains(str)) {
             System.out.println(String.format("Вы уже вводили слово %s",str));
         } else {
             Player p = playerRepo.getPlayers()

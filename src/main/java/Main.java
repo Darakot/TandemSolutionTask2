@@ -1,4 +1,4 @@
-import controller.PalindromeGameControllerImpl;
+import players.PalindromeGameControllerImpl;
 import dto.Player;
 
 import java.util.Scanner;
@@ -8,7 +8,31 @@ public class Main {
         Scanner inCommand = new Scanner(System.in);
         Scanner inStr = new Scanner(System.in);
         PalindromeGameControllerImpl controller = new PalindromeGameControllerImpl();
+//        Player player1 = new Player("D", "Дмитрий", 0);
+//        Player player2 = new Player("K", "Ксения", 1);
+//        controller.newPlayer("D", "Дмитрий");
+//        controller.newPlayer("K", "Ксения");
+//        controller.newPlayer("A","Антон");
+//        controller.newPlayer("L","Лео");
+//        controller.newPlayer("S","Сергей");
+//        controller.newPlayer("A1","Антон");
+//        controller.newPlayer("V","Вася");
+//        controller.newPlayer("P","Петя");
+//
+//        controller.addVp("D",100);
+//        controller.addVp("K",99);
+//        controller.addVp("A",23);
+//        controller.addVp("L",44);
+//        controller.addVp("S",11);
+//        controller.addVp("A1",101);
+//        controller.addVp("V",200);
+//        controller.addVp("P",300);
+//
+//        controller.leaderBoard();
 
+//        controller.playGame(player1, "akka");
+//        controller.playGame(player1, "akks");
+//        controller.playGame(player1, "assssa");
         int command = 0;
         String nick;
         Player player = null;

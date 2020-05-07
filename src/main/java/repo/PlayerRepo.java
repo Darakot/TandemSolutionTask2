@@ -44,4 +44,18 @@ public class PlayerRepo {
     public List<Player> getPlayers() {
         return players;
     }
+
+    /**
+     * Удаляет пользователя
+     * @param nick - ник пользователя
+     * @return - возращает 1 если пользователь удален успешно
+     */
+    public boolean deletePlayer(String nick){
+
+        Player player=players.stream()
+                .filter(p -> p.getNick().equals(nick))
+                .findFirst()
+                .get();
+        return players.remove(player);
+    }
 }
