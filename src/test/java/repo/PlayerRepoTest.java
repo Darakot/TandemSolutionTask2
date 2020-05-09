@@ -7,6 +7,13 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Тесты для репо
+ * Для начала заполняем репозиторий данными
+ * тестируем 2 метода
+ * allNickNamesPlayers - должен возвратить список всех ников у всех игроков
+ * addNewPlayerAndDelete - тестирует успешное удаление и добавление игрока
+ */
 public class PlayerRepoTest {
     private List<String> playersNicks = new ArrayList<>();
     private PlayerRepo playerRepo = new PlayerRepo();

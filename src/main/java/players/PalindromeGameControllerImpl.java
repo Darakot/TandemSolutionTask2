@@ -3,7 +3,7 @@ package players;
 import dto.Player;
 import service.PalindromeGameService;
 
-import java.util.Map;
+import java.util.Arrays;
 
 /**
  * Слой контроллера которые выполняет комманды пришедшие от пользователя
@@ -20,9 +20,9 @@ public class PalindromeGameControllerImpl implements PalindromeGameController {
      */
     @Override
     public void leaderBoard() {
-        palindromeGameService.leaderBoard().entrySet().stream()
-                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
-                .forEach(System.out::println);
+        Arrays.stream(palindromeGameService.leaderBoard()).forEach(player -> {
+            System.out.println(String.format("Ник пользователя:%s Количество очков:%s", player.getNick(), player.getVp()));
+        });
     }
 
     /**
@@ -44,7 +44,7 @@ public class PalindromeGameControllerImpl implements PalindromeGameController {
      */
     @Override
     public void playGame(Player player, String str) {
-        palindromeGameService.playGame(player, str);
+        System.out.println(palindromeGameService.playGame(player, str));
     }
 
     /**
@@ -52,7 +52,9 @@ public class PalindromeGameControllerImpl implements PalindromeGameController {
      */
     @Override
     public void allPlayers() {
-        palindromeGameService.allPlayers();
+        palindromeGameService.allPlayers().forEach(player -> {
+            System.out.println(player.getNick() + " " + player.getName());
+        });;
     }
 
     /**

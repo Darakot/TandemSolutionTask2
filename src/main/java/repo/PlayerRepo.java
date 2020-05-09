@@ -38,6 +38,16 @@ public class PlayerRepo {
     }
 
     /**
+     * Добавляет нового пользователя для тестирования
+     * @param name - имя пользователя
+     * @param nick - ник пользователя
+     * @return - возращает 1 если пользователь создан успешно
+     */
+    public boolean newPlayerTest(String name, String nick, int vp){
+        return players.add(new Player(name,nick,players.size(), vp));
+    }
+
+    /**
      * Возращает список всех игроков
      * @return - список всех игроков
      */

@@ -3,9 +3,8 @@ package service;
 import dto.Player;
 import repo.PlayerRepo;
 
-import java.util.Map;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 /**
  * Сервисный слой в котором находится логика обработки комманд контроллера
@@ -21,7 +20,7 @@ public class PalindromeGameService {
      * Зачем возврать мапу а не вывести все в forEach мне сейчас тоже интересно)Возможно переделаю
      * @return - Мара где ключ это ник, а значение колиство очков победы
      */
-    public Map<String, Integer> leaderBoard() {
+    public Player[] leaderBoard() {
         return playerRepo.getPlayers().stream()
                 .sorted((p1, p2) -> {
                     if (p1.getVp() > p2.getVp()) return -1;
@@ -29,7 +28,7 @@ public class PalindromeGameService {
                     return 0;
                 })
                 .limit(5)
-                .collect(Collectors.toMap(Player::getNick, Player::getVp));
+                .toArray(Player[]::new);
     }
 
     /**
@@ -47,22 +46,46 @@ public class PalindromeGameService {
     }
 
     /**
+     * Создание нового пользователя и запись его в класс репозиторий
+     * @param nick - ник игрока
+     * @param name - имя игрока
+     * @return - возвращает 1 если пользователь успешно создан и 0 если он уже существует или не получилось добавить в лист
+     */
+    public boolean newPlayerTest(String nick, String name, int vp) {
+        if (playerRepo.allNickNamesPlayers().contains(nick)) {
+            return false;
+        }
+
+        return playerRepo.newPlayerTest(nick, name,vp);
+    }
+    /**
+     * Удаление игрока
+     * @param nick - ник игрока
+     * @return - возвращает 1 если пользователь успешно удален и 0 если игрока с таким ником нет
+     */
+    public boolean deletePlayerTest(String nick) {
+        if (playerRepo.allNickNamesPlayers().contains(nick)) {
+            return playerRepo.deletePlayer(nick);
+        }
+
+        return false;
+    }
+
+    /**
      * Сам процесс игры если str является палиндром и его нет в списке палиндром игрока то добавляем его туда
      * и начисляем очки победы
      * @param player - игрок
      * @param str - слово палиндр
      */
-    public void playGame(Player player, String str) {
-        if (!isPalindrome(str)) {
-            System.out.println(String.format("%s не является палиндром",str));
-        }else if(player.getPalindromes().contains(str)) {
-            System.out.println(String.format("Вы уже вводили слово %s",str));
+    public String playGame(Player player, String str) {
+        if (!isPalindrome(str)) { return String.format("%s не является палиндром",str);
+        }else if(player.getPalindromes().contains(str)) { return String.format("Вы уже вводили слово %s",str);
         } else {
             Player p = playerRepo.getPlayers()
                     .get(player.getId());
             p.addVp(str.length());
             p.addPalindrome(str);
-            System.out.println(String.format("%s получил %s. Общий счет %s",p.getNick(),str.length(),p.getVp()));
+            return String.format("%s получил %s. Общий счет %s",p.getNick(),str.length(),p.getVp());
         }
     }
 
@@ -78,11 +101,10 @@ public class PalindromeGameService {
 
     /**
      * Выводит на экран всех игроков которые зарегисрировались
+     * @return - лист со всем игроками
      */
-    public void allPlayers() {
-        playerRepo.getPlayers().forEach(player -> {
-            System.out.println(player.getNick() + " " + player.getName());
-        });
+    public List<Player> allPlayers() {
+        return playerRepo.getPlayers();
     }
 
     /**

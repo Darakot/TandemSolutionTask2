@@ -17,12 +17,22 @@ public class Player {
     private int vp;
     private List<String> palindromes;
 
+
     public Player(String nick, String name, int id) {
         this.nick = nick;
         this.name = name;
         this.id = id;
 
         this.vp = 0;
+        this.palindromes = new ArrayList<>();
+    }
+
+    public Player(String name, String nick, int id, int vp) {
+        this.id = id;
+        this.name = name;
+        this.nick = nick;
+        this.vp = vp;
+
         this.palindromes = new ArrayList<>();
     }
 
@@ -64,5 +74,15 @@ public class Player {
 
     public void addPalindrome(String palindrome) {
         this.palindromes.add(palindrome);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", nick='" + nick + '\'' +
+                ", vp=" + vp +
+                '}';
     }
 }
