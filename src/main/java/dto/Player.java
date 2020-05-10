@@ -14,7 +14,7 @@ public class Player {
     private int id;
     private String name;
     private String nick;
-    private int vp;
+    private Integer vp;
     private List<String> palindromes;
 
 
@@ -39,6 +39,7 @@ public class Player {
     public int getVp() {
         return vp;
     }
+
 
     public int getId() {
         return id;
@@ -74,6 +75,10 @@ public class Player {
 
     public void addPalindrome(String palindrome) {
         this.palindromes.add(palindrome);
+    }
+
+    public String getVpStr() {
+        return vp.toString();
     }
 
     @Override

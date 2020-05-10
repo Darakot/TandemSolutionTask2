@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="180.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
+   <children>
+      <HBox layoutX="266.0" layoutY="14.0" prefHeight="35.0" prefWidth="120.0">
+         <children>
+            <Label fx:id="nickname" text="Player:">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="victoryPoints" layoutX="15.0" layoutY="15.0" text="Vp">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="18.0" layoutY="49.0" prefHeight="40.0" prefWidth="365.0">
+         <children>
+            <Label text="String">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="strPalindrome" prefHeight="30.0" prefWidth="280.0">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <Button fx:id="playGame" layoutX="172.0" layoutY="120.0" mnemonicParsing="false" text="Play">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="message" layoutX="51.0" layoutY="89.0" prefHeight="25.0" prefWidth="300.0" text="Label">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="returnMenu" layoutX="285.0" layoutY="134.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Return menu" />
+      <ChoiceBox fx:id="players" layoutX="14.0" layoutY="14.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

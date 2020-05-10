@@ -10,9 +10,17 @@ import java.util.NoSuchElementException;
  * Сервисный слой в котором находится логика обработки комманд контроллера
  */
 public class PalindromeGameService {
+    private static PalindromeGameService instance;
     private PlayerRepo playerRepo = new PlayerRepo();
 
-    public PalindromeGameService() {
+    private PalindromeGameService() {
+    }
+
+    public static PalindromeGameService getInstance(){
+        if(instance == null){
+            instance = new PalindromeGameService();
+        }
+        return instance;
     }
 
     /**
@@ -116,7 +124,7 @@ public class PalindromeGameService {
         Player player = null;
         try {
             player=playerRepo.getPlayers().stream()
-                    .filter(p -> p.getName().equals(nick))
+                    .filter(p -> p.getNick().equals(nick))
                     .findFirst()
                     .get();
         }catch (NoSuchElementException ignored){
@@ -134,7 +142,7 @@ public class PalindromeGameService {
         int Vp = -1;
         try {
             Vp=playerRepo.getPlayers().stream()
-                    .filter(p -> p.getName().equals(nick))
+                    .filter(p -> p.getNick().equals(nick))
                     .findFirst()
                     .get()
                     .getVp();

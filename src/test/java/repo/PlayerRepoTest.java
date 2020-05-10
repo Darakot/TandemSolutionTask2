@@ -1,5 +1,6 @@
 package repo;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,5 +49,11 @@ public class PlayerRepoTest {
     public void addNewPlayerAndDelete() {
         Assert.assertTrue(playerRepo.addNewPlayer("F", "Федор"));
         Assert.assertTrue(playerRepo.deletePlayer("F"));
+    }
+
+    @After
+    public void deletePlayers(){
+        playerRepo.getPlayers().clear();
+        playersNicks.clear();
     }
 }

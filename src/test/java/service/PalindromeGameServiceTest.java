@@ -1,12 +1,14 @@
 package service;
 
 import dto.Player;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,35 +28,35 @@ import java.util.List;
 public class PalindromeGameServiceTest {
     private List<Player> players = new ArrayList<>();
     private Player[] leaderBoard;
-    PalindromeGameService palindromeGameService = new PalindromeGameService();
+    private PalindromeGameService palindromeGameService = PalindromeGameService.getInstance();
 
     @Before
-    public void createPlayers(){
+    public void createPlayers() {
         leaderBoard = new Player[]{
-                new Player("A1", "Антон",5,300),
-                new Player("S", "Сергей",4,250),
-                new Player("P", "Петя",7,210),
-                new Player("K", "Ксения",1,200),
-                new Player("D", "Данил",0,100)
+                new Player("Антон", "A1", 5, 300),
+                new Player("Сергей", "S", 4, 250),
+                new Player("Петя", "P", 7, 210),
+                new Player("Ксения", "K", 1, 200),
+                new Player("Данил", "D", 0, 100)
         };
 
-        palindromeGameService.newPlayerTest("D", "Данил",100);
-        palindromeGameService.newPlayerTest("K", "Ксения",200);
-        palindromeGameService.newPlayerTest("A", "Антон",10);
-        palindromeGameService.newPlayerTest("L", "Лео",90);
-        palindromeGameService.newPlayerTest("S", "Сергей",250);
-        palindromeGameService.newPlayerTest("A1", "Антон",300);
-        palindromeGameService.newPlayerTest("V", "Вася",20);
-        palindromeGameService.newPlayerTest("P", "Петя",210);
+        palindromeGameService.newPlayerTest("Данил", "D", 100);
+        palindromeGameService.newPlayerTest("Ксения", "K", 200);
+        palindromeGameService.newPlayerTest("Антон", "A", 10);
+        palindromeGameService.newPlayerTest("Лео", "L", 90);
+        palindromeGameService.newPlayerTest("Сергей", "S", 250);
+        palindromeGameService.newPlayerTest("Антон", "A1", 300);
+        palindromeGameService.newPlayerTest("Вася", "V", 20);
+        palindromeGameService.newPlayerTest("Петя", "P", 210);
 
-        players.add(new Player("D", "Данил",0,100));
-        players.add(new Player("K", "Ксения",1,200));
-        players.add(new Player("A", "Антон",2,10));
-        players.add(new Player("L", "Лео",3,90));
-        players.add(new Player("S", "Сергей",4,250));
-        players.add(new Player("A1", "Антон",5,300));
-        players.add(new Player("V", "Вася",6,20));
-        players.add(new Player("P", "Петя",7,210));
+        players.add(new Player("Данил", "D", 0, 100));
+        players.add(new Player("Ксения", "K", 1, 200));
+        players.add(new Player("Антон", "A", 2, 10));
+        players.add(new Player("Лео", "L", 3, 90));
+        players.add(new Player("Сергей", "S", 4, 250));
+        players.add(new Player("Антон", "A1", 5, 300));
+        players.add(new Player("Вася", "V", 6, 20));
+        players.add(new Player("Петя", "P", 7, 210));
     }
 
     @Test
@@ -74,34 +76,41 @@ public class PalindromeGameServiceTest {
         String duplicate = "Алла";
         String isNotPalindrome = "Карантин";
 
-        Player player = new Player("D", "Данил",0,100);
+        Player player = new Player("Данил", "D", 0, 100);
         player.getPalindromes().add(duplicate);
 
-        String gameSuccess = String.format("%s получил %s. Общий счет %s",player.getNick(),
+        String gameSuccess = String.format("%s получил %s. Общий счет %s", player.getNick(),
                 palindrome.length(),
                 player.getVp() + palindrome.length());
-        String gameFailedIsNotPalindrome = String.format("%s не является палиндром",isNotPalindrome);
-        String gameFailed = String.format("Вы уже вводили слово %s",duplicate);
+        String gameFailedIsNotPalindrome = String.format("%s не является палиндром", isNotPalindrome);
+        String gameFailed = String.format("Вы уже вводили слово %s", duplicate);
 
-        Assert.assertEquals(gameSuccess,palindromeGameService.playGame(player,palindrome));
-        Assert.assertEquals(gameFailedIsNotPalindrome,palindromeGameService.playGame(player,isNotPalindrome));
-        Assert.assertEquals(gameFailed,palindromeGameService.playGame(player,duplicate));
+        Assert.assertEquals(gameSuccess, palindromeGameService.playGame(player, palindrome));
+        Assert.assertEquals(gameFailedIsNotPalindrome, palindromeGameService.playGame(player, isNotPalindrome));
+        Assert.assertEquals(gameFailed, palindromeGameService.playGame(player, duplicate));
     }
 
     @Test
     public void allPlayers() {
-        Assert.assertEquals(players.toString(),palindromeGameService.allPlayers().toString());
+        Assert.assertEquals(players.toString(), palindromeGameService.allPlayers().toString());
     }
 
     @Test
     public void getPlayer() {
-        Player player = new Player("D", "Данил",0,100);
-        Assert.assertEquals(player.toString(),palindromeGameService.getPlayer("D").toString());
+        Player player = new Player("Данил", "D", 0, 100);
+        Assert.assertEquals(player.toString(), palindromeGameService.getPlayer("D").toString());
     }
 
     @Test
     public void getVpPlayer() {
-        Player player = new Player("D", "Данил",0,100);
-        Assert.assertEquals(player.getVp(),palindromeGameService.getVpPlayer("D"));
+        Player player = new Player("Данил", "D", 0, 100);
+        Assert.assertEquals(player.getVp(), palindromeGameService.getVpPlayer("D"));
+    }
+
+    @After
+    public void deletePlayers() {
+        palindromeGameService.allPlayers().clear();
+        players.clear();
     }
 }
+
