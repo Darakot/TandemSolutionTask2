@@ -1,5 +1,9 @@
 package dto;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +14,9 @@ import java.util.List;
  * Конструктор создает пользователя с ником, именем, id, пустым списком полидромов и 0 очков
  */
 
+@Getter
+@Setter
+@ToString
 public class Player {
     private int id;
     private String name;
@@ -36,39 +43,6 @@ public class Player {
         this.palindromes = new ArrayList<>();
     }
 
-    public int getVp() {
-        return vp;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<String> getPalindromes() {
-        return palindromes;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNick() {
-        return nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
     public void addVp(int length) {
         this.vp+=length;
     }
@@ -79,15 +53,5 @@ public class Player {
 
     public String getVpStr() {
         return vp.toString();
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", nick='" + nick + '\'' +
-                ", vp=" + vp +
-                '}';
     }
 }

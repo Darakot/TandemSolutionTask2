@@ -138,7 +138,7 @@ public class PalindromeGameService {
      * @param nick - ник игрока
      * @return - возвращает количество очков победы у конкретного игрока
      */
-    public int getVpPlayer(String nick) {
+    public Integer getVpPlayer(String nick) {
         int Vp = -1;
         try {
             Vp=playerRepo.getPlayers().stream()
