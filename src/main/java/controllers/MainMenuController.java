@@ -5,6 +5,13 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import util.Win;
 
+/**
+ * Главное меню
+ * openNewGame - начинает новую игру, переходим на другое окно
+ * openNewPlayer - создаем нового игрока, переходим на другое окно
+ * openLeaderBoard - Смотрим таблицу лидеров, переходим на другое окно
+ */
+
 public class MainMenuController {
     @FXML
     private Button openNewGame;

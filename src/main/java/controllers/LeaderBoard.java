@@ -12,6 +12,12 @@ import javafx.stage.Stage;
 import service.PalindromeGameService;
 import util.Win;
 
+/**
+ * Таблица лидеров с 2 таблицами.
+ * 1 - ник игрока
+ * 2 - очки победы
+ * returnMenu - кнопка возврата в меню
+ */
 public class LeaderBoard {
     PalindromeGameService palindromeGameService = PalindromeGameService.getInstance();
 

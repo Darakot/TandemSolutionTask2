@@ -8,6 +8,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Класс для открытие нового окна
+ * Создал так как много кода поторялось
+ */
 public class Win {
 
     public static void openWindow(Stage window, String fxml) {
