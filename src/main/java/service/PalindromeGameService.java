@@ -116,7 +116,7 @@ public class PalindromeGameService {
         Player player = null;
         try {
             player=playerRepo.getPlayers().stream()
-                    .filter(p -> p.getName().equals(nick))
+                    .filter(p -> p.getNick().equals(nick))
                     .findFirst()
                     .get();
         }catch (NoSuchElementException ignored){
@@ -134,7 +134,7 @@ public class PalindromeGameService {
         int Vp = -1;
         try {
             Vp=playerRepo.getPlayers().stream()
-                    .filter(p -> p.getName().equals(nick))
+                    .filter(p -> p.getNick().equals(nick))
                     .findFirst()
                     .get()
                     .getVp();
